@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: vcluster
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: engineering-dev
+        url: https://kubernetes.default.svc
+  template:
+    metadata:
+      name: vcluster
+      namespace: tenant1
+    spec:
+      project: vcluster
+      source:
+        repoURL: https://github.com/Aamir-raza-1/apps
+        targetRevision: HEAD
+        path: tenant1/vcluster/dev
+      destination:
+        server:  https://kubernetes.default.svc
+        namespace: tenant-1
+      syncPolicy:
+        automated: 
+          prune: true
+        syncOptions:
+        - CreateNamespace=true

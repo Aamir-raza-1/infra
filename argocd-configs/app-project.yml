@@ -1,0 +1,41 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: AppProject
+# metadata:
+#   name: namespace-provisioner
+#   namespace: argocd
+# spec:
+#   description: Project for provisioning namesppce
+#   destinations:
+#   - namespace: '*'
+#     server: https://kubernetes.default.svc
+#   - namespace: argocd
+#     server: https://kubernetes.default.svc
+#   sourceRepos:
+#   - https://github.com/Aamir-raza-1/apps
+#   clusterResourceWhitelist:
+#   - group: ''
+#     kind: Namespace
+#   namespaceResourceWhitelist:
+#   - group: "*"
+#     kind: "*"
+
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: vcluster
+  namespace: argocd
+spec:
+  description: Project for provisioning namesppce
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+  - namespace: argocd
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - https://github.com/Aamir-raza-1/apps
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  namespaceResourceWhitelist:
+  - group: "*"
+    kind: "*"
